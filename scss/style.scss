@@ -33,71 +33,158 @@ ul {
 }
 
 p {
+    margin-bottom: 1.25em;
+    
+    .intro & {
+        font-size: 1.2em;
+    }
+}
 
+a {
+    color: $color-primary;
+    text-decoration: none;
+    
+    &:hover {
+        color: $color-secondary;
+    }
 }
 
 /* HEADER & FOOTER -------------------------------- */
 
 header {
+    height: 460px;
+    background: linear-gradient($color-bg-light, $color-bg), url('../img/bg.jpg') no-repeat;
+    background-blend-mode: multiply;
+    background-size: cover;
+    
+    h1 {
+        color: $white;
+        font-size: 4.8em;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+    }
 
-}
-
-header::after {
-    content: '';
-
-} 
-
-header h1 {
-
-}
-
-header p {
-
+    p {
+        color: $color-accent;
+        font-size: 1.25em;
+        margin: 0;
+    }
+    
+    @include skewed {
+        background-color: $white;
+        bottom: -25px;
+    }
+        
 }
 
 footer {
+    padding: 2em 0 0;
+    height: 100px;
+    background-color: $color-shade;
+    margin-top: 3.5em;
+
+    @include skewed {
+        background-color: $color-shade;
+        top: -25px;    
+    }
 
 }
-
-footer::before {
-    content: '';
-
-} 
 
 /* CONTAINERS ------------------------------------- */
 
 .inner {
-
+    padding: .5em 1em;
 }
 
 .intro {
-
+    margin: auto;
+    padding: 1em 1em 3em;
 }
 
 /* COMPONENTS ------------------------------------- */
 
 .main-nav {
-
+    margin-top: 1em;
+    
+    li {
+        display: inline-block;
+        margin: 0 .65em;
+    }
+    
+    a {
+        color: $white;
+        font-size: .85em;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: .5em;
+        
+        &:hover {
+            color: rgba($color-accent, .6);
+        }
+    }
 }
 
 .img-featured {
-
+    width: 165px;
+    border: 4px solid $white;
+    border-radius: 50%;
+    margin-top: 75px;
+    position: relative;
+    z-index: 100;
 }
 
 .card {
-
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 1em;
+    border: 1px solid $color-shade;
+    border-radius: .25em;
+    
+    h1 {
+        margin: .35em 0 0;
+        line-height: 1.25;
+    }
+    
+    .icon, h1 {
+        color: $color-primary;
+    }
 }
 
-.card h1 {
 
+%btn {
+    color: $white;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: .75em 1.5em;
+    border-radius: .35em;
+    
+    &:hover {
+        color: $white;
+        opacity: .8;
+    }
 }
 
-.btn-info {
+.btn {
+    &-callout {
+        @extend %btn;
+        font-size: 1.1em;
+        background-color: $color-secondary;
+    }
 
+    &-info {
+        @extend %btn;
+        font-size: .85em;
+        background-color: $color-primary;
+        margin-top: auto;
+    }
+    
 }
 
 .material-icons {
-
+    font-size: 2.35em;
+    color: $color-primary-light;
 }
 
 /* MEDIA QUERIES ---------------------------------- */
@@ -105,15 +192,15 @@ footer::before {
 @include breakpoint(max-width 575px) {
 
     header {
-
+        height: 340px;
     }
 
     header h1 {
-
+        font-size: 3.4em;
     }
 
     .img-featured {
-
+        display: none;
     }
 
 }
@@ -121,11 +208,16 @@ footer::before {
 @include breakpoint(576px) {
 
     .main-content {
-
+        display: flex;
+        flex-wrap: wrap;
     }  
 
     .card {
-
+        flex: 1 per-line(2); //46% 
+        
+        @include breakpoint(992px) {
+            flex-basis: per-line(3); //27.33%
+        }
     }
 
 }
@@ -133,7 +225,7 @@ footer::before {
 @include breakpoint(768px) {
 
     .main-content {
-
+        @include center;
     }
 
 }
@@ -141,11 +233,11 @@ footer::before {
 @include breakpoint(992px) {
 
     header {
-
+        background-position: 0 0, 0 45%;
     }
 
     .intro {
-
+        width: 45%;
     }
 
 }
