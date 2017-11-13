@@ -121,21 +121,22 @@ footer {
         &:hover {
             color: rgba($color-accent, .6);
         }
+        
+        &.clicked {
+            color: red;
+        }
     }
 }
 
 .img-featured {
-    width: 165px;
-    border: 4px solid $white;
-    border-radius: 50%;
+    @include roundy($brdr: 4px solid $white, $dim: 165px);
     margin-top: 75px;
     position: relative;
     z-index: 100;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
+    @include flexy($dir: column);
     padding: 1.5em 1em;
     border: 1px solid $color-shade;
     border-radius: .25em;
@@ -187,6 +188,12 @@ footer {
     color: $color-primary-light;
 }
 
+@each $theme, $color in $themes {
+    .icn-#{$theme} {
+        color: $color !important;
+    }
+}
+
 /* MEDIA QUERIES ---------------------------------- */
 
 @include breakpoint(max-width 575px) {
@@ -208,8 +215,7 @@ footer {
 @include breakpoint(576px) {
 
     .main-content {
-        display: flex;
-        flex-wrap: wrap;
+        @include flexy($wrap: wrap);
     }  
 
     .card {
@@ -225,7 +231,7 @@ footer {
 @include breakpoint(768px) {
 
     .main-content {
-        @include center;
+        @include center(90%);
     }
 
 }

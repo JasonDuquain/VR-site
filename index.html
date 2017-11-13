@@ -71,5 +71,24 @@
     <footer><!--position: relative-->
       <span>&copy;2017 Experience VR, The Blog</span>
     </footer>
+    
+    <script>
+        let mainNav = document.querySelector('.main-nav');
+        let anchors = document.querySelectorAll('.main-nav a');
+        
+        mainNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (e.target.tagName === 'A' && !e.target.classList.contains('clicked')) {
+                for (let i = 0; i < anchors.length; i++) {
+                   anchors[i].classList.remove('clicked');
+                    e.target.classList.add('clicked');
+                }
+            }
+        });
+        
+      
+    </script>
+    
+    
   </body>
 </html>
